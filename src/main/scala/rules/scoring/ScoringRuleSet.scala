@@ -25,3 +25,15 @@ trait FarmAnimalScoringRule extends ScoringRule {
 object SheepScoringRule extends FarmAnimalScoringRule {
   override val farmAnimal = Sheep
 }
+
+object DonkeyScoringRule extends FarmAnimalScoringRule {
+  override val farmAnimal = Donkey
+}
+
+object WildBoarScoringRule extends FarmAnimalScoringRule {
+  override val farmAnimal = WildBoar
+}
+
+object CattleScoringRule extends FarmAnimalScoringRule {
+  override val farmAnimal = Cattle
+}
