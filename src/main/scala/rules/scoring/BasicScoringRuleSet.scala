@@ -1,7 +1,13 @@
 package rules.scoring
-import models.Types.ResourceMap
-import models.general_resources.playing_pieces.{Dog, Sheep}
+import models.Types.{ResourceMap, Score}
 
-case object BasicScoringRuleSet {
-  val rules: List[ScoringRule] = List(DogScoringRule)
+case object BasicScoringRuleSet extends ScoringRule {
+  val rules: List[ScoringRule] = List(
+    DogScoringRule, SheepScoringRule, DonkeyScoringRule, WildBoarScoringRule, CattleScoringRule,
+    GrainScoringRule, VegetableScoringRule
+  )
+
+  override def score(resourceMap: ResourceMap): Score = {
+    rules.map(rule => rule.score(resourceMap)).sum
+  }
 }
