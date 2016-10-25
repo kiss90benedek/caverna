@@ -7,10 +7,16 @@ trait ScoringRule {
   def score(resourceMap: ResourceMap): Score = 0
 }
 
-object DogScoringRule extends ScoringRule {
+trait All1ScoringRule extends ScoringRule {
+  val resource: Any
+
   override def score(resourceMap: ResourceMap): Score = {
-    resourceMap.getOrElse(Dog, 0)
+    resourceMap.getOrElse(resource, 0)
   }
+}
+
+object DogScoringRule extends All1ScoringRule {
+  override val resource = Dog
 }
 
 trait FarmAnimalScoringRule extends ScoringRule {
@@ -36,4 +42,15 @@ object WildBoarScoringRule extends FarmAnimalScoringRule {
 
 object CattleScoringRule extends FarmAnimalScoringRule {
   override val farmAnimal = Cattle
+}
+
+object GrainScoringRule extends ScoringRule {
+  override def score(resourceMap: ResourceMap): Score = {
+    val grainCount = resourceMap.getOrElse(Grain, 0)
+    (grainCount + 1) / 2
+  }
+}
+
+object VegetableScoringRule extends All1ScoringRule {
+  override val resource = Vegetable
 }

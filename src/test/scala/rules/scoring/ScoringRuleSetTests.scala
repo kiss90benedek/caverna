@@ -45,4 +45,33 @@ class ScoringRuleSetTests extends FlatSpec with Matchers with PropertyChecks {
       }
     }
   }
+
+  val grainScoring =
+    Table(
+      ("count", "score"),
+      (0,       0),
+      (1,       1),
+      (2,       1),
+      (3,       2),
+      (4,       2),
+      (5,       3)
+    )
+
+  "Grains" should "be worth 1 point per 2, rounded up" in {
+    forAll (grainScoring) { (count: Int, score: Int) =>
+      val resourceMap: ResourceMap = Map(Grain -> count)
+
+      GrainScoringRule.score(resourceMap) should equal (score)
+    }
+  }
+
+  "Vegetables" should "be worth 1 point each" in {
+    val countGen = Gen.choose(0, Integer.MAX_VALUE)
+
+    forAll (countGen) { (count: Int) =>
+      val resourceMap: ResourceMap = Map(Vegetable -> count)
+
+      VegetableScoringRule.score(resourceMap) should be (count)
+    }
+  }
 }
