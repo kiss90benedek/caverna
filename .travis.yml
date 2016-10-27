@@ -1,3 +1,12 @@
 language: scala
 scala:
-   - 2.11.2
+  - 2.11.2
+
+notifications:
+  email:
+    recipients:
+      - boardgamemodellers@gmail.com
+    on_success: change
+    on_failure: change
+  slack:
+    secure: Y2Bt3opc0qxpi9Fd9DbMmSo22lYsdo0PW4XPGtBGdD5IJgr3gS9ZLCP+W+rZKqv1VjYP2My/9tO37sgXoWP6jQVIB5H06nMZQhsl4yI/qXwUPkNlsPNqmmHqi3nqbAOs4QfJ2pKX5cYXhHb9WtuPt+6pKsNnHhUQmPQli1Jm//r7ehdW8L13dcvLu+p9h01XEtmT3NmIoPYDoNLoTz84fYKpb6aD/a5rS6Una7THkVw/UEfxPNruPJEYXGltcDvMHmS46obW7lZh+eJqROlgPHTg0xFGZdsvf4vydujtzOorf9eXSTDBv++Xd0eGh3GdKi5NSMu12jwzFupmgYXEKY8bOaiCXkaDNRaKBQyQoqZaqJtb1J5CNWAKoopusGvJ6uWEetBXXqR+5jWyG78zTJCAM8tzBnqeVxPLPNQxkNFJ1N6MD/Bw9FP1rJPi16bwF1lXwhVH6WY6Vd8hz/JLnfy5EUgCooMX7bMvXTOSvXEteQQj8iL7hhJWx6kP/Uo19atjbGV+MnCdt0pxDKYelKYKVlyfrgD38htGL40nWhvfrWL7IIq443TO7vl3mYbkpFiWy4FBqCXw05Znkyl+6Gug4TEon9xxLErb7RMWuwysLQ4zlgM6Tn7r6jUk/I4+aZBQY7sVIDz9zflGizDxvYBicMlvhragFD2yrYB0JvY=
