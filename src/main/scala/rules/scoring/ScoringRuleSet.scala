@@ -1,14 +1,14 @@
 package rules.scoring
 
 import models.Types.{ResourceMap, Score}
-import models.general_resources.playing_pieces._
+import models.general_resources._
 
 trait ScoringRule {
   def score(resourceMap: ResourceMap): Score = 0
 }
 
 trait All1ScoringRule extends ScoringRule {
-  val resource: Any
+  val resource: Resource
 
   override def score(resourceMap: ResourceMap): Score = {
     resourceMap.getOrElse(resource, 0)

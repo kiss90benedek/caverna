@@ -1,7 +1,7 @@
 package rules.scoring
 
 import models.Types.ResourceMap
-import models.general_resources.playing_pieces._
+import models.general_resources._
 import org.scalacheck.Gen
 import org.scalatest._
 import org.scalatest.prop.PropertyChecks
@@ -27,7 +27,7 @@ class ScoringRuleSetTests extends FlatSpec with Matchers with PropertyChecks {
     )
 
   "Farm animals" should "be worth -2 points if missing" in {
-    forAll (farmAnimalScoring) { (animal: Any, animalScoringRule: ScoringRule) =>
+    forAll (farmAnimalScoring) { (animal: Animal, animalScoringRule: ScoringRule) =>
       val resourceMap: ResourceMap = Map(animal -> 0)
 
       animalScoringRule.score(resourceMap) should equal (-2)
@@ -35,7 +35,7 @@ class ScoringRuleSetTests extends FlatSpec with Matchers with PropertyChecks {
   }
 
   "Farm animals" should "be worth 1 point each if not missing" in {
-    forAll (farmAnimalScoring) { (animal: Any, animalScoringRule: ScoringRule) =>
+    forAll (farmAnimalScoring) { (animal: Animal, animalScoringRule: ScoringRule) =>
       val countGen = Gen.choose(1, Integer.MAX_VALUE)
 
       forAll (countGen) { (count: Int) =>

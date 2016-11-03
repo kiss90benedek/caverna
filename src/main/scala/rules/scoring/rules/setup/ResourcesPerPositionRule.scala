@@ -1,7 +1,7 @@
 package rules.scoring.rules.setup
 
 import models.Types.ResourceMap
-import models.general_resources.playing_pieces.Food
+import models.general_resources._
 
 object ResourcesPerPositionRule {
   private val resourceMap: Map[Int, ResourceMap] = Map(

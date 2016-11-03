@@ -1,7 +1,7 @@
 package rules.scoring
 
 import models.Types.ResourceMap
-import models.general_resources.playing_pieces._
+import models.general_resources._
 import org.scalacheck.Gen
 import org.scalatest._
 import org.scalatest.prop.PropertyChecks
