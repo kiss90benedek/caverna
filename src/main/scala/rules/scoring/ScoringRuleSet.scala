@@ -1,17 +1,18 @@
 package rules.scoring
 
-import models.Types.{ResourceMap, Score}
+import models.Player
+import models.Types.Score
 import models.general_resources._
 
 trait ScoringRule {
-  def score(resourceMap: ResourceMap): Score = 0
+  def score(player: Player): Score = 0
 }
 
 trait All1ScoringRule extends ScoringRule {
   val resource: Resource
 
-  override def score(resourceMap: ResourceMap): Score = {
-    resourceMap.getOrElse(resource, 0)
+  override def score(player: Player): Score = {
+    player.resourceMap.getOrElse(resource, 0)
   }
 }
 
@@ -22,8 +23,8 @@ object DogScoringRule extends All1ScoringRule {
 trait FarmAnimalScoringRule extends ScoringRule {
   val farmAnimal: FarmAnimal
 
-  override def score(resourceMap: ResourceMap): Score = {
-    val farmAnimalCount = resourceMap.getOrElse(farmAnimal, 0)
+  override def score(player: Player): Score = {
+    val farmAnimalCount = player.resourceMap.getOrElse(farmAnimal, 0)
     if (farmAnimalCount == 0) -2 else farmAnimalCount
   }
 }
@@ -45,8 +46,8 @@ object CattleScoringRule extends FarmAnimalScoringRule {
 }
 
 object GrainScoringRule extends ScoringRule {
-  override def score(resourceMap: ResourceMap): Score = {
-    val grainCount = resourceMap.getOrElse(Grain, 0)
+  override def score(player: Player): Score = {
+    val grainCount = player.resourceMap.getOrElse(Grain, 0)
     (grainCount + 1) / 2
   }
 }

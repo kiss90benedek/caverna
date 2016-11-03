@@ -2,11 +2,11 @@ package models.player_resources
 
 import org.scalatest._
 
-import scala.collection.immutable.TreeSet
+import scala.collection.immutable.{SortedSet, TreeSet}
 
 class DwarfTests extends FlatSpec with Matchers {
-  "Dwarfes" should "be ordered by weapon strength and then by birth order" in {
-    val dwarfes: TreeSet[Dwarf] = TreeSet(
+  "Dwarfs" should "be ordered by weapon strength and then by birth order" in {
+    val dwarfs: SortedSet[Dwarf] = TreeSet(
       DwarfWithWeapon(8, 2),
       DwarfWithoutWeapon(4),
       DwarfWithWeapon(3, 5),
@@ -21,6 +21,6 @@ class DwarfTests extends FlatSpec with Matchers {
       (10, 1)
     )
 
-    dwarfes.toList.map(dwarf => (dwarf.weaponStrength, dwarf.birthOrder)) should equal (expectedOrder)
+    dwarfs.toList.map(dwarf => (dwarf.weaponStrength, dwarf.birthOrder)) should equal (expectedOrder)
   }
 }

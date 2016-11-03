@@ -1,5 +1,6 @@
 package rules.scoring
 
+import models.Player
 import models.Types.ResourceMap
 import models.general_resources._
 import org.scalacheck.Gen
@@ -7,13 +8,15 @@ import org.scalatest._
 import org.scalatest.prop.PropertyChecks
 
 class ScoringRuleSetTests extends FlatSpec with Matchers with PropertyChecks {
+  val player: Player = new Player(1)
+
   "Dogs" should "be worth 1 point each" in {
     val countGen = Gen.choose(0, Integer.MAX_VALUE)
 
     forAll (countGen) { (count: Int) =>
       val resourceMap: ResourceMap = Map(Dog -> count)
 
-      DogScoringRule.score(resourceMap) should be (count)
+      DogScoringRule.score(player.apply(resourceMap)) should be (count)
     }
   }
 
@@ -30,7 +33,7 @@ class ScoringRuleSetTests extends FlatSpec with Matchers with PropertyChecks {
     forAll (farmAnimalScoring) { (animal: Animal, animalScoringRule: ScoringRule) =>
       val resourceMap: ResourceMap = Map(animal -> 0)
 
-      animalScoringRule.score(resourceMap) should equal (-2)
+      animalScoringRule.score(player.apply(resourceMap)) should equal (-2)
     }
   }
 
@@ -41,7 +44,7 @@ class ScoringRuleSetTests extends FlatSpec with Matchers with PropertyChecks {
       forAll (countGen) { (count: Int) =>
         val resourceMap: ResourceMap = Map(animal -> count)
 
-        animalScoringRule.score(resourceMap) should equal (count)
+        animalScoringRule.score(player.apply(resourceMap)) should equal (count)
       }
     }
   }
@@ -61,7 +64,7 @@ class ScoringRuleSetTests extends FlatSpec with Matchers with PropertyChecks {
     forAll (grainScoring) { (count: Int, score: Int) =>
       val resourceMap: ResourceMap = Map(Grain -> count)
 
-      GrainScoringRule.score(resourceMap) should equal (score)
+      GrainScoringRule.score(player.apply(resourceMap)) should equal (score)
     }
   }
 
@@ -71,7 +74,7 @@ class ScoringRuleSetTests extends FlatSpec with Matchers with PropertyChecks {
     forAll (countGen) { (count: Int) =>
       val resourceMap: ResourceMap = Map(Vegetable -> count)
 
-      VegetableScoringRule.score(resourceMap) should be (count)
+      VegetableScoringRule.score(player.apply(resourceMap)) should be (count)
     }
   }
 }

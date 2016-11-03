@@ -1,5 +1,6 @@
 package rules.scoring
-import models.Types.{ResourceMap, Score}
+import models.Player
+import models.Types.Score
 
 case object BasicScoringRuleSet extends ScoringRule {
   val rules: List[ScoringRule] = List(
@@ -7,7 +8,7 @@ case object BasicScoringRuleSet extends ScoringRule {
     GrainScoringRule, VegetableScoringRule
   )
 
-  override def score(resourceMap: ResourceMap): Score = {
-    rules.map(rule => rule.score(resourceMap)).sum
+  override def score(player: Player): Score = {
+    rules.map(rule => rule.score(player)).sum
   }
 }
