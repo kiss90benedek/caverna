@@ -13,7 +13,7 @@ case class Player(playerBoard: PlayerBoard, dwarves: SortedSet[Dwarf], resourceM
 
   def this(startingPosition: Int) =
     this(
-      BasicPlayerBoard(),
+      new BasicPlayerBoard,
       TreeSet(DwarfWithoutWeapon(1), DwarfWithoutWeapon(2)),
       ResourcesPerPositionRule.getResources(startingPosition),
       new PlayingRules
