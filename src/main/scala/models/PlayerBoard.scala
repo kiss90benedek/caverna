@@ -21,7 +21,7 @@ import models.general_resources._
 object MountainType extends Enumeration {
   type MountainType = Value
   val Empty = Value(" ")
-  val Used = Value("x")
+  val Used = Value("▣")
   val Cavern = Value("▢")
   val Tunnel = Value("╬")
   val DeepTunnel = Value("+")

@@ -14,7 +14,7 @@ class PlayerBoardTests extends FlatSpec with Matchers with PropertyChecks {
       """|↟↟↟|   |
         #|↟↟↟|   |
         #|↟↟↟|▢  |
-        #|↟↟↟|x  |""".stripMargin('#')
+        #|↟↟↟|▣  |""".stripMargin('#')
     )
   }
 
@@ -23,9 +23,9 @@ class PlayerBoardTests extends FlatSpec with Matchers with PropertyChecks {
 
     playerBoard.toString should equal (
       """|↟∩∩|▢ ╬|
-        #|Ξ∪∪|+♦x|
-        #| ⊂⊃|x♢♦|
-        #|o Ξ|xxx|""".stripMargin('#')
+        #|Ξ∪∪|+♦▣|
+        #| ⊂⊃|▣♢♦|
+        #|o Ξ|▣▣▣|""".stripMargin('#')
     )
   }
 }
