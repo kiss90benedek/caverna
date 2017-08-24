@@ -14,7 +14,9 @@ object LandType extends Enumeration {
   val LargePastureD = Value("∪")
 }
 
-import LandType._
+import models.LandType._
+import models.Types.ResourceMap
+import models.general_resources._
 
 object MountainType extends Enumeration {
   type MountainType = Value
@@ -27,13 +29,13 @@ object MountainType extends Enumeration {
   val RubyMine = Value("♢")
 }
 
-import MountainType._
+import models.MountainType._
 
 trait Square
-case class Land(surface: LandType) extends Square {
+case class Land(surface: LandType, recources: ResourceMap = Map.empty) extends Square {
   override def toString: String = surface.toString
 }
-case class Mountain(surface: MountainType) extends Square {
+case class Mountain(surface: MountainType, recources: ResourceMap = Map.empty) extends Square {
   override def toString: String = surface.toString
 }
 
@@ -49,11 +51,18 @@ case object BasicPlayerBoard {
   val ROWS: Int = 4
   val COLUMNS: Int = 3
 
-  val startingLands: Array[Array[Land]] = Array.fill[Land](ROWS, COLUMNS)(Land(Forest))
+  val startingLands: Array[Array[Land]] = {
+    val sL = Array.fill[Land](ROWS, COLUMNS)(Land(Forest))
+    sL(0)(2) = Land(Forest, Map(WildBoar -> 1))
+    sL(2)(0) = Land(Forest, Map(WildBoar -> 1))
+    sL
+  }
   val startingMountains: Array[Array[Mountain]] = {
     val sM = Array.fill[Mountain](ROWS, COLUMNS)(Mountain(Empty))
+    sM(0)(2) = Mountain(Empty, Map(Food -> 2))
     sM(2)(0) = Mountain(Cavern)
     sM(3)(0) = Mountain(Used)
+    sM(3)(1) = Mountain(Empty, Map(Food -> 1))
     sM
   }
 }
